@@ -1,5 +1,6 @@
-import 'package:coffee_app_v2/HomePage.dart';
 import 'package:flutter/material.dart';
+import 'package:coffee_app_v2/size.dart';
+import 'package:coffee_app_v2/HomePage.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -9,39 +10,43 @@ class Splashscreen extends StatefulWidget {
 }
 
 class _SplashscreenState extends State<Splashscreen> {
-    void _navigateToHome() {
-    // Logic to navigate to HomePage
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => Homepage()),
-    );
+
+  @override
+  void initState(){
+    super.initState();
+    _navigateToHome();
+
   }
+  _navigateToHome()async{
+    await Future.delayed(const Duration(milliseconds: 10000),(){});
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Homepage()));
+  }
+
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
-      backgroundColor: const Color(0xFFECE0D1),
+      backgroundColor: const Color.fromARGB(255, 240, 223, 202),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(1.0),
         child: Container(
-          height: screenHeight,
-          width: screenWidth,
+          height: SizeConfig.screenHeight,
+          width: SizeConfig.screenWidth,
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: screenHeight * 0.20), // Space above image
+              SizedBox(height: SizeConfig.screenHeight * 0.2),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2.0), // Padding around image
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Image.asset(
                   'assets/splash.png',
-                  width: screenWidth * 1, // Width of the image
-                  fit: BoxFit.contain, // Ensures image fits within its bounds
+                  width: SizeConfig.screenWidth * 1,
+                  fit: BoxFit.contain,
+                  
                 ),
               ),
-              SizedBox(height: screenHeight * 0.08), // Decrease spacing below image
+              SizedBox(height: SizeConfig.screenHeight * 0.08),
               const Text(
                 'Stay Focused',
                 style: TextStyle(
@@ -50,33 +55,48 @@ class _SplashscreenState extends State<Splashscreen> {
                   color: Color(0xFF38220F),
                 ),
               ),
-              SizedBox(height: screenHeight * 0.02), // Spacing below text
-              const Text(
-                'Wake up and smell the coffee. Start your day with the perfect brew. Your journey to caffeine bliss begins here.',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                  color: Color.fromARGB(255, 117, 116, 116),
-                ),
-                textAlign: TextAlign.center, // Center align the text
-              ),
-              SizedBox(height: screenHeight * 0.1), // Space above button
-              ElevatedButton(
-                onPressed: _navigateToHome,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown, // Button color
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12), // Button padding
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30), // Rounded corners
-                  ),
-                ),
+              SizedBox(height: SizeConfig.screenHeight * 0.02),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'Dive In ->',
+                  'Wake up and smell the coffee. Start your day with the perfect brew. Your journey to caffeine bliss begins here.',
                   style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
                     fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: Color.fromARGB(255, 113, 111, 111),
                   ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(height: SizeConfig.screenHeight * 0.1),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => Homepage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 150, 114, 102),
+                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Dive In',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Icon(Icons.arrow_forward, color: Colors.white),
+                  ],
                 ),
               ),
             ],
@@ -85,4 +105,5 @@ class _SplashscreenState extends State<Splashscreen> {
       ),
     );
   }
-}
+  }
+
