@@ -47,22 +47,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 25,
                         width: 50,
                         decoration: BoxDecoration(
-                          color: Color(0xFF1d2630).withOpacity(0.7),
-                          borderRadius: BorderRadius.only(
+                          color: const Color(0xFF1d2630).withOpacity(0.7),
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(10),
                           ),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.star,
                               color: Colors.orange,
                               size: 14,
                             ),
                             Text(
                               ratings[index].toString(),
-                              style: TextStyle(color: Colors.white, fontSize: 12),
+                              style: const TextStyle(color: Colors.white, fontSize: 12),
                             ),
                           ],
                         ),
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 3),
             Text(
               names[index],
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xFF444444),
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -84,14 +84,14 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 5),
             Text(
               descriptions[index],
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 12,
               ),
             ),
             Text(
               prices[index],
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xFF444444),
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.add,
                     color: Colors.white,
                     size: 20,
@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SizeConfig().init(context);
 
     if (names.isEmpty || descriptions.isEmpty || ratings.isEmpty) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(child: CircularProgressIndicator()), // Loading indicator
       );
     }
@@ -293,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             const SizedBox(height: 20),
-            Text(
+            const Text(
               "Special for you",
               style: TextStyle(fontSize: 20),
             ),
@@ -313,7 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.brown.withOpacity(0.1),
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         image: NetworkImage("https://static.toiimg.com/thumb/msid-112525506,width-1070,height-580,imgsize-1776962,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg"),
                         fit: BoxFit.cover,
                       ),
@@ -324,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "Special Coffee Blend",
                           style: TextStyle(
                             color: Colors.white,
@@ -352,7 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () {
                             // Add your button action here
                           },
-                          child: Text(
+                          child: const Text(
                             "Order Now",
                             style: TextStyle(color: Colors.white),
                           ),
