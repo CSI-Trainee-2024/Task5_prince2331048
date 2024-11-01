@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.onAddToCart}) : super(key: key);
 
   @override
+
   State<HomeScreen> createState() => _HomeScreenState();
 }
 

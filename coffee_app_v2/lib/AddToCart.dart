@@ -1,3 +1,4 @@
+import 'package:coffee_app_v2/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'coffeee_class.dart';
 
@@ -11,7 +12,7 @@ class Addtocart extends StatefulWidget {
 }
 
 class _AddtocartState extends State<Addtocart> {
-  late List<bool> selectedItems; // To track selected items for deletion
+  late List<bool> selectedItems; 
 
   @override
   void initState() {
@@ -26,7 +27,7 @@ class _AddtocartState extends State<Addtocart> {
           widget.cartItems.removeAt(i);
         }
       }
-      selectedItems = List<bool>.filled(widget.cartItems.length, false); // Reset selection
+      selectedItems = List<bool>.filled(widget.cartItems.length, false); 
     });
   }
 
@@ -46,6 +47,16 @@ Widget build(BuildContext context) {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+ IconButton(
+  icon: const Icon(Icons.arrow_back),
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen(onAddToCart: (Coffee ) {  },)),
+    );
+  },
+),
+
                       const Text('Your Cart', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                       IconButton(
                         iconSize: 40,
