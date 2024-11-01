@@ -27,7 +27,8 @@ List<Coffee> filteredCoffees = allCoffees;
   void _addToCart(Coffee coffee) {
     widget.onAddToCart(coffee); // Use the callback to update the cart in Homepage
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('${coffee.name} added to cart!')),
+      SnackBar(content: Text('${coffee.name} added to cart!'),
+      duration: Duration(seconds: 1),),
     );
   }
 
