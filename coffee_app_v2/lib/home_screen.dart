@@ -6,7 +6,8 @@ import 'package:coffee_app_v2/resorces_list.dart';
 import 'package:coffee_app_v2/size.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final Function(Coffee) onAddToCart;
+  const HomeScreen({Key? key, required this.onAddToCart}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -15,18 +16,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 List<Coffee> filteredCoffees = allCoffees;
 
-void updateSearchQuery(String query) {
-  setState(() {
-    if (query.isEmpty) {
-      filteredCoffees = allCoffees;
-    } else {
-      filteredCoffees = allCoffees
-          .where((coffee) => coffee.name.toLowerCase().contains(query.toLowerCase()))
-          .toList(); 
-    }
-  });
-}
 
+  void updateSearchQuery(String query) {
+    setState(() {
+      filteredCoffees = query.isEmpty
+          ? allCoffees
+          : allCoffees.where((coffee) => coffee.name.toLowerCase().contains(query.toLowerCase())).toList();
+    });
+  }
+  void _addToCart(Coffee coffee) {
+    widget.onAddToCart(coffee); // Use the callback to update the cart in Homepage
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${coffee.name} added to cart!')),
+    );
+  }
 
   int selectedIndex = 0;
 
@@ -113,14 +116,7 @@ void updateSearchQuery(String query) {
                         color: Colors.white,
                         size: 20,
                       ),
-                      onPressed: () {
-                        
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('${coffee.name} added to cart!'),
-                          ),
-                        );
-                      },
+                      onPressed: ()=>_addToCart(coffee),
                     ),
                   ),
                 ],
