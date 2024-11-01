@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'coffeee_class.dart'; // Import your Coffee class
+import 'coffeee_class.dart'; 
 
 class CoffeeDetailScreen extends StatelessWidget {
   final Coffee coffee;

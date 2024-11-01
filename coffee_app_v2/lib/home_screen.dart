@@ -2,7 +2,7 @@ import 'package:coffee_app_v2/coffee%20detail.dart';
 import 'package:coffee_app_v2/coffeee_class.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee_app_v2/circular_icon.dart';
-import 'package:coffee_app_v2/resorces_list.dart'; // Ensure this contains names, images, etc.
+import 'package:coffee_app_v2/resorces_list.dart'; 
 import 'package:coffee_app_v2/size.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,11 +18,11 @@ List<Coffee> filteredCoffees = allCoffees;
 void updateSearchQuery(String query) {
   setState(() {
     if (query.isEmpty) {
-      filteredCoffees = allCoffees; // Show all coffees if the query is empty
+      filteredCoffees = allCoffees;
     } else {
       filteredCoffees = allCoffees
           .where((coffee) => coffee.name.toLowerCase().contains(query.toLowerCase()))
-          .toList(); // Filter based on the coffee name
+          .toList(); 
     }
   });
 }
@@ -83,7 +83,7 @@ void updateSearchQuery(String query) {
                   fontSize: SizeConfig.blockSizeHorizontal * 2.2,
                 ),
               ),
-              // Row for price and add button
+              
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -114,7 +114,7 @@ void updateSearchQuery(String query) {
                         size: 20,
                       ),
                       onPressed: () {
-                        // Implement your add action here
+                        
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('${coffee.name} added to cart!'),
@@ -281,10 +281,10 @@ void updateSearchQuery(String query) {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
-              itemCount: filteredCoffees.length > 2 ? 2: filteredCoffees.length, // Use filteredNames to determine item count
+              itemCount: filteredCoffees.length > 2 ? 2: filteredCoffees.length,
               itemBuilder: (context, index) {
-               // Get the original index
-                return buildCoffeeCard(filteredCoffees[index]); // Pass original index to buildCoffeeCard
+               
+                return buildCoffeeCard(filteredCoffees[index]); 
               },
             ),
             
@@ -368,7 +368,7 @@ void updateSearchQuery(String query) {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
-              itemCount: filteredCoffees.length, // Updated to use filteredNames
+              itemCount: filteredCoffees.length, 
               itemBuilder: (context, index) {
                 return buildCoffeeCard(filteredCoffees[index]);
               },
