@@ -1,3 +1,5 @@
+import 'package:coffee_app_v2/coffeee_class.dart';
+
 var category=[
   true,
   false,
@@ -9,7 +11,7 @@ const List<String> images = [
   "assets/c2.jpg",
   "assets/c4.jpg",
   "assets/c3.jpg",
-  "assets/p1.jpeg",
+  "assets/s1.jpg",
   "assets/p3.jpeg",
   "assets/p4.jpeg",
   "assets/p5.jpeg",
@@ -37,114 +39,26 @@ const List<String> names = [
   "Red Eye",
   "Black Eye",
 ];
-var descriptions=[
-  "with Oat Milk",
-  "with Chocolate",
-  "with White Milk",
-  "with Oat Milk",
-  "with Chocolate",
-  "with White Milk",
-  "with Oat Milk",
-  "with Chocolate",
-  "with White Milk",
-  "with Oat Milk",
-  "with Chocolate",
-  "with White Milk",
 
-];
 const List<String> prices=[
-  "₹ 4.20",
-  "₹ 5.10",
-  "₹ 2.86",
-  "₹ 7.56",
-  "₹ 1.14",
-  "₹ 6.72",
-  "₹ 2.66",
-  "₹ 7.17",
-  "₹ 9.73",
-  "₹ 5.66",
+  "₹ 400.20",
+  "₹ 500.10",
+  "₹ 200.86",
+  "₹ 700.56",
+  "₹ 100.14",
+  "₹ 600.72",
+  "₹ 200.66",
+  "₹ 700.17",
+  "₹ 900.73",
+  "₹ 500.66",
 ];
-var mediumRating = [
-  3.2,
-  2.3,
-  4.3,
-  1.9,
-  3.8,
-  1.8,
-  3.6,
-  2.7,
-  1.6,
-  4.5,
-];
-var largeRating = [
-  3.2,
-  2.3,
-  1.8,
-  3.6,
-  2.7,
-  1.6,
-  4.5,
-  4.3,
-  1.9,
-  3.8,
-];
-var prefix = [
-  "(5.753)",
-  "(3.343)",
-  "(4.653)",
-  "(1.49)",
-  "(4.353)",
-  "(6.333)",
-  "(2.743)",
-  "(4.355)",
-  "(2.443)",
-  "(1.123)",
-];
-var prefixMedium = [
-  "(2.443)",
-  "(5.753)",
-  "(3.343)",
-  "(4.653)",
-  "(6.333)",
-  "(2.743)",
-  "(4.355)",
-  "(1.49)",
-  "(4.353)",
-  "(1.123)",
-];
-var prefixLarge = [
-  "(4.653)",
-  "(1.49)",
-  "(2.743)",
-  "(4.355)",
-  "(5.753)",
-  "(3.343)",
-  "(2.443)",
-  "(4.353)",
-  "(6.333)",
-  "(1.123)",
-];
-var mediumPrice = [
-  "5.10",
-  "6.20",
-  "3.56",
-  "4.77",
-  "2.64",
-  "7.25",
-  "3.86",
-  "8.56",
-  "10.84",
-  "6.98",
-];
-var largePrice = [
-  "6.03",
-  "7.21",
-  "4.23",
-  "5.45",
-  "3.32",
-  "8.44",
-  "3.09",
-  "9.87",
-  "11.63",
-  "7.57",
+
+List<Coffee> allCoffees = [
+  Coffee("Espresso", "Rich and creamy", images[0], "₹ 400.20"),
+  Coffee("Latte", "Strong and bold", images[1], "₹ 200.20"),
+  Coffee("Cappuccino", "with Oat Milk", images[2], "₹ 300.20"),
+  Coffee("Cafetiere", "with Chocolate", images[3], "₹ 100.20"),
+  Coffee("Red Eye", "with White Milk", images[4], "₹ 150.20"),
+  Coffee("Black Eye", "Strong and bold", images[5], "₹ 250.20"),
+  
 ];

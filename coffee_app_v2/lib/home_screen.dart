@@ -1,3 +1,5 @@
+import 'package:coffee_app_v2/coffee%20detail.dart';
+import 'package:coffee_app_v2/coffeee_class.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee_app_v2/circular_icon.dart';
 import 'package:coffee_app_v2/resorces_list.dart'; // Ensure this contains names, images, etc.
@@ -11,31 +13,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> filteredNames = names;
-  List<String> filteredImages = images;
-  String searchQuery = '';
+List<Coffee> filteredCoffees = allCoffees;
 
 void updateSearchQuery(String query) {
   setState(() {
-    searchQuery = query;
-
-    if (searchQuery.isEmpty) {
-      // Reset to show all coffee items when the search query is empty
-      filteredNames = names;
-      filteredImages = images;
+    if (query.isEmpty) {
+      filteredCoffees = allCoffees; // Show all coffees if the query is empty
     } else {
-      // Filter coffee items based on the search query
-      filteredNames = names
-          .where((name) => name.toLowerCase().contains(searchQuery.toLowerCase()))
-          .toList();
-
-      // Update images based on filtered names
-      filteredImages = images
-          .asMap()
-          .entries
-          .where((entry) => filteredNames.contains(names[entry.key]))
-          .map((entry) => entry.value)
-          .toList();
+      filteredCoffees = allCoffees
+          .where((coffee) => coffee.name.toLowerCase().contains(query.toLowerCase()))
+          .toList(); // Filter based on the coffee name
     }
   });
 }
@@ -43,8 +30,18 @@ void updateSearchQuery(String query) {
 
   int selectedIndex = 0;
 
-  Widget buildCoffeeCard(int index) {
-  return Card(
+  Widget buildCoffeeCard(Coffee coffee) {
+      return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CoffeeDetailScreen(coffee: coffee),
+        ),
+      );
+    },
+  
+  child: Card(
     elevation: 5,
     color: Colors.white.withOpacity(0.5),
     shape: RoundedRectangleBorder(
@@ -59,7 +56,7 @@ void updateSearchQuery(String query) {
             height: 118,
             width: double.infinity,
             child: Image.asset(
-              filteredImages[index],
+              coffee.image,
               fit: BoxFit.cover,
             ),
           ),
@@ -71,19 +68,19 @@ void updateSearchQuery(String query) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                filteredNames[index],
+                coffee.name,
                 style: TextStyle(
                   color: const Color(0xFF444444),
-                  fontSize: SizeConfig.blockSizeHorizontal * 3.5,
+                  fontSize: SizeConfig.blockSizeHorizontal * 3.3,
                   fontWeight: FontWeight.w500,
                 ),
               ),
               const SizedBox(height: 2),
               Text(
-                descriptions[names.indexOf(filteredNames[index])],
+                coffee.description,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: SizeConfig.blockSizeHorizontal * 2.5,
+                  fontSize: SizeConfig.blockSizeHorizontal * 2.2,
                 ),
               ),
               // Row for price and add button
@@ -91,10 +88,10 @@ void updateSearchQuery(String query) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    prices[names.indexOf(filteredNames[index])],
+                    coffee.price,
                     style: TextStyle(
                       color: const Color(0xFF444444),
-                      fontSize: SizeConfig.blockSizeHorizontal * 3.5,
+                      fontSize: SizeConfig.blockSizeHorizontal * 3.2,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -120,7 +117,7 @@ void updateSearchQuery(String query) {
                         // Implement your add action here
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('${filteredNames[index]} added to cart!'),
+                            content: Text('${coffee.name} added to cart!'),
                           ),
                         );
                       },
@@ -133,18 +130,14 @@ void updateSearchQuery(String query) {
         ),
       ],
     ),
-  );
+  ),
+      );
 }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    if (names.isEmpty || descriptions.isEmpty || ratings.isEmpty) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -208,11 +201,11 @@ void updateSearchQuery(String query) {
                   child: TextField(
                     onChanged: updateSearchQuery,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.coffee),
+                      prefixIcon: const Icon(Icons.coffee),
                       hintText: "Find Your Coffee...",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(color: Colors.brown),
+                        borderSide: const BorderSide(color: Colors.brown),
                       ),
                       filled: true,
                       fillColor: Colors.brown.withOpacity(0.1),
@@ -288,10 +281,10 @@ void updateSearchQuery(String query) {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
-              itemCount: filteredNames.length, // Use filteredNames to determine item count
+              itemCount: filteredCoffees.length > 2 ? 2: filteredCoffees.length, // Use filteredNames to determine item count
               itemBuilder: (context, index) {
-                int originalIndex = names.indexOf(filteredNames[index]); // Get the original index
-                return buildCoffeeCard(originalIndex); // Pass original index to buildCoffeeCard
+               // Get the original index
+                return buildCoffeeCard(filteredCoffees[index]); // Pass original index to buildCoffeeCard
               },
             ),
             
@@ -302,7 +295,7 @@ void updateSearchQuery(String query) {
             ),
             const SizedBox(height: 20),
             Container(
-              width: SizeConfig.screenWidth * 0.8,
+              width: SizeConfig.screenWidth * 0.9,
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
@@ -338,7 +331,7 @@ void updateSearchQuery(String query) {
                         const SizedBox(height: 5),
                         Text(
                           "A unique blend of flavors just for you!",
-                                                    style: TextStyle(
+                          style: TextStyle(
                             color: Colors.white.withOpacity(0.8),
                             fontSize: 14,
                           ),
@@ -375,9 +368,9 @@ void updateSearchQuery(String query) {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
-              itemCount: filteredNames.length, // Updated to use filteredNames
+              itemCount: filteredCoffees.length, // Updated to use filteredNames
               itemBuilder: (context, index) {
-                return buildCoffeeCard(index);
+                return buildCoffeeCard(filteredCoffees[index]);
               },
             ),
           ],
