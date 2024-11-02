@@ -1,8 +1,8 @@
-import 'package:coffee_app_v2/coffee%20detail.dart';
-import 'package:coffee_app_v2/coffeee_class.dart';
+import 'package:coffee_app_v2/class%20and%20detail%20of%20coffe/coffee%20detail.dart';
+import 'package:coffee_app_v2/class%20and%20detail%20of%20coffe/coffeee_class.dart';
+import 'package:coffee_app_v2/class%20and%20detail%20of%20coffe/resorces_list.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee_app_v2/circular_icon.dart';
-import 'package:coffee_app_v2/resorces_list.dart'; 
 import 'package:coffee_app_v2/size.dart';
 
 class HomeScreen extends StatefulWidget {

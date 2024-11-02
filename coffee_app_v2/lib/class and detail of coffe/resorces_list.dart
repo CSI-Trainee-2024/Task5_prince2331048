@@ -1,4 +1,5 @@
-import 'package:coffee_app_v2/coffeee_class.dart';
+
+import 'package:coffee_app_v2/class%20and%20detail%20of%20coffe/coffeee_class.dart';
 
 var category=[
   true,

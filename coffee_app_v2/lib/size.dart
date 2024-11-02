@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SizeConfig {
-  static late double screenWidth;
-  static late double screenHeight;
+  static late double screenWidth = 0.0;
+  static late double screenHeight = 0.0;
   static late double blockSizeHorizontal;
   static late double blockSizeVertical;
   static bool isPortrait = true;

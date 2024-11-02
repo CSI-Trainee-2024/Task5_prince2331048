@@ -1,7 +1,9 @@
-import 'package:coffee_app_v2/AddToCart.dart';
-import 'package:coffee_app_v2/home_screen.dart';
+import 'package:coffee_app_v2/bottom%20navigation%20pages/AddToCart.dart';
+import 'package:coffee_app_v2/bottom%20navigation%20pages/home_screen.dart';
+import 'package:coffee_app_v2/class%20and%20detail%20of%20coffe/coffeee_class.dart';
+
 import 'package:flutter/material.dart';
-import 'coffeee_class.dart';
+
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -20,7 +22,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
     page.addAll([
-      HomeScreen(onAddToCart: _updateCartItems), // Pass the function
+      HomeScreen(onAddToCart: _updateCartItems), 
       const Center(child: Text("Favorite", style: TextStyle(color: Colors.black))),
       Addtocart(cartItems: cartItems),
       const Center(child: Text("Notification", style: TextStyle(color: Colors.black))),
@@ -60,9 +62,8 @@ class _HomepageState extends State<Homepage> {
               onTap: (value) {
                 setState(() {
                   index = value;
-                  // Update Addtocart widget to reflect the current cart items
                   if (index == 2) {
-                    page[2] = Addtocart(cartItems: cartItems); // Refresh cart page
+                    page[2] = Addtocart(cartItems: cartItems);
                   }
                 });
               },
