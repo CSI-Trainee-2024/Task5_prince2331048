@@ -1,4 +1,3 @@
-import 'package:coffee_app_v2/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'coffeee_class.dart';
 
@@ -31,56 +30,85 @@ class _AddtocartState extends State<Addtocart> {
     });
   }
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    backgroundColor: Colors.white,
-    body: widget.cartItems.isEmpty
-        ? const Center(child: Text('Your cart is empty!', style: TextStyle(fontSize: 20)))
-        : SingleChildScrollView(
-            padding: const EdgeInsets.all(20.0),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
- IconButton(
-  icon: const Icon(Icons.arrow_back),
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen(onAddToCart: (Coffee ) {  },)),
-    );
-  },
-),
+  void _incrementQuantity(int index) {
+    setState(() {
+      widget.cartItems[index].quantity++; 
+    });
+  }
 
-                      const Text('Your Cart', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                      IconButton(
-                        iconSize: 40,
-                        icon: const Icon(Icons.delete, color: Colors.red,),
-                        onPressed: _removeSelectedItems,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  ListView.builder(
-                    itemCount: widget.cartItems.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return buildCartCard(widget.cartItems[index], index);
-                    },
-                  ),
-                ],
-              ),
+  void _decrementQuantity(int index) {
+    setState(() {
+      if (widget.cartItems[index].quantity > 1) {
+        widget.cartItems[index].quantity--;
+      }
+    });
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                const Text('Your Cart', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                IconButton(
+                  iconSize: 40,
+                  icon: const Icon(Icons.delete, color: Colors.red),
+                  onPressed: _removeSelectedItems,
+                ),
+              ],
             ),
-          ),
-  );
-}
-
+            const SizedBox(height: 10),
+            Text(
+              'Items(${get_total_itemcount()})', // Corrected this line
+              style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            
+            const SizedBox(height: 10),
+            widget.cartItems.isEmpty
+                ? const Center(
+                    child: Text(
+                      'Your cart is empty!',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  )
+                : Expanded(
+          
+                    child: ListView.builder(
+                      itemCount: widget.cartItems.length,
+                      itemBuilder: (context, index) {
+                        return buildCartCard(widget.cartItems[index], index);
+                      },
+                    ),
+                  ),
+          ],
+        ),
+      ),
+    );
+  }
+  int get_total_itemcount(){
+    int totalCount = 0;
+    for (var coffee in widget.cartItems){
+      totalCount += coffee.quantity;
+    }
+    return totalCount;
+  }
 
   Widget buildCartCard(Coffee coffee, int index) {
     return Card(
@@ -100,7 +128,7 @@ Widget build(BuildContext context) {
               child: Checkbox(
                 value: selectedItems[index],
                 shape: const CircleBorder(),
-              activeColor: Color(0xFF967259),
+                activeColor: Color(0xFF967259),
                 onChanged: (bool? value) {
                   setState(() {
                     selectedItems[index] = value!;
@@ -126,6 +154,24 @@ Widget build(BuildContext context) {
                   const SizedBox(height: 5),
                   Text(coffee.description, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Quantity: ${coffee.quantity}", style: const TextStyle(fontSize: 14)),
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.remove),
+                            onPressed: () => _decrementQuantity(index),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: () => _incrementQuantity(index),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                   Text(coffee.price, style: const TextStyle(fontSize: 14)),
                 ],
               ),
