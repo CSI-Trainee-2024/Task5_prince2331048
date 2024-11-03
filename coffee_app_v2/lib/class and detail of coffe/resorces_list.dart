@@ -53,6 +53,11 @@ const List<String> prices=[
   "₹ 900.73",
   "₹ 500.66",
 ];
+const List<String> chocolatesType=[
+  "white choclate",
+  "dark choclate",
+  "milk choclate",
+];
 
 List<Coffee> allCoffees = [
   Coffee("Espresso", "Rich and creamy", images[0], "₹ 400.20",ratings[0]),
