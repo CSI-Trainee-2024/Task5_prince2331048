@@ -26,7 +26,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: SizedBox(
-                height: SizeConfig.screenHeight * 0.5,
+                height: SizeConfig.screenHeight * 0.45,
                 child: Stack(children: [
                   Container(
                     height: 420,
@@ -65,7 +65,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                     ],
                   ),
                   Positioned(
-                    bottom: SizeConfig.screenHeight * 0.0425,
+                    bottom: SizeConfig.screenHeight * 0.0,
                     left: 0,
                     right: 0,
                     child: Padding(
@@ -120,9 +120,9 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                                       style: const TextStyle(fontSize: 18),
                                     ),
                                     const SizedBox(width: 4),
-                                    Text(
+                                    const Text(
                                       '(8,590)',
-                                      style: const TextStyle(fontSize: 12),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
@@ -161,7 +161,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                   ),
                   SizedBox(height: SizeConfig.screenHeight * 0.02),
                   Text(
-                    widget.coffee.description,
+                    'Espresso is a strong, rich coffee made by forcing hot water through finely-ground beans under pressure. It’s the base for many coffee drinks like lattes and cappuccinos. Known for its bold flavor and velvety crema, espresso offers a quick, concentrated caffeine boost. 🌟☕️',
                     style: TextStyle(fontSize: 15),
                   ),
                   SizedBox(height: SizeConfig.screenHeight * 0.02),
