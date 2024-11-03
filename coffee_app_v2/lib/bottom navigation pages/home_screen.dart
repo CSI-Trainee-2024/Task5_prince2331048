@@ -204,6 +204,7 @@ List<Coffee> filteredCoffees = allCoffees;
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.coffee),
                       hintText: "Find Your Coffee...",
+                      hintStyle: TextStyle(color: Colors.brown.withOpacity(0.5)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(color: Colors.brown),
@@ -215,16 +216,21 @@ List<Coffee> filteredCoffees = allCoffees;
                 ),
                 const SizedBox(width: 10),
                 Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.brown.withOpacity(0.1),
+                  height: 55,
+                  width: 55,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(35),
+                        topRight: Radius.circular(35),
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(35),
+                      ),
+                    color: Colors.brown,
                   ),
                   child: IconButton(
                     icon: Icon(
-                      Icons.settings,
-                      color: Colors.brown.withOpacity(0.7),
+                      Icons.menu,
+                      color: Colors.white.withOpacity(0.7),
                     ),
                     onPressed: () {},
                   ),

@@ -185,7 +185,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.brown),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(40),
                               color: selectedChocolateType == index
                                   ? Colors.brown
                                   : Colors.transparent,
@@ -238,7 +238,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                                         ? Colors.brown
                                         : Colors.transparent,
                                   ),
-                                  child: Text("S"),
+                                  child: const Text("S"),
                                 ),
                               ),
                               SizedBox(width: SizeConfig.screenWidth * 0.04),
@@ -259,7 +259,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                                         ? Colors.brown
                                         : Colors.transparent,
                                   ),
-                                  child: Text("M"),
+                                  child: const Text("M"),
                                 ),
                               ),
                               SizedBox(width: SizeConfig.screenWidth * 0.04),
@@ -280,7 +280,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                                         ? Colors.brown
                                         : Colors.transparent,
                                   ),
-                                  child: Text("L"),
+                                  child: const Text("L"),
                                 ),
                               ),
                             ],

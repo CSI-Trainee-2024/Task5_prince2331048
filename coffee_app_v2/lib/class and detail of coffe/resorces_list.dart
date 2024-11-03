@@ -1,13 +1,6 @@
 
 import 'package:coffee_app_v2/class%20and%20detail%20of%20coffe/coffeee_class.dart';
 
-var category=[
-  true,
-  false,
-  false,
-  false,
-  false,
-];
 const List<String> images = [
   "assets/c2.jpg",
   "assets/c4.jpg",
