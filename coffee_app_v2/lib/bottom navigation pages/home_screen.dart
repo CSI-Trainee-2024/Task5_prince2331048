@@ -26,7 +26,7 @@ List<Coffee> filteredCoffees = allCoffees;
     });
   }
   void _addToCart(Coffee coffee) {
-    widget.onAddToCart(coffee); // Use the callback to update the cart in Homepage
+    widget.onAddToCart(coffee); 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('${coffee.name} added to cart!'),
       duration: Duration(seconds: 1),),
@@ -48,25 +48,28 @@ List<Coffee> filteredCoffees = allCoffees;
   
   child: Card(
     elevation: 5,
-    color: Colors.white.withOpacity(0.5),
+    color: Colors.white.withOpacity(0.7),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-            height: 118,
-            width: double.infinity,
-            child: Image.asset(
-              coffee.image,
-              fit: BoxFit.cover,
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              height: 118,
+              width: double.infinity,
+              child: Image.asset(
+                coffee.image,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
-        const SizedBox(height: 3),
+
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
@@ -80,11 +83,11 @@ List<Coffee> filteredCoffees = allCoffees;
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 2),
+
               Text(
                 coffee.description,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.brown,
                   fontSize: SizeConfig.blockSizeHorizontal * 2.2,
                 ),
               ),
@@ -275,7 +278,7 @@ List<Coffee> filteredCoffees = allCoffees;
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: SizeConfig.isPortrait ? 2 : 3,
-                childAspectRatio: SizeConfig.isPortrait ? 0.8 : 1.0,
+                childAspectRatio: SizeConfig.isPortrait ? 0.745 : 0.97,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
@@ -362,7 +365,7 @@ List<Coffee> filteredCoffees = allCoffees;
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: SizeConfig.isPortrait ? 2 : 3,
-                childAspectRatio: SizeConfig.isPortrait ? 0.8 : 1.0,
+                childAspectRatio: SizeConfig.isPortrait ? 0.745 : 0.97,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
