@@ -3,9 +3,10 @@ class Coffee {
   final String description;
   final String image;
   final String price;
+  final String ratings;
   int quantity; // Added quantity property
 
-  Coffee(this.name, this.description, this.image, this.price, {this.quantity = 1}); // Default quantity is 1
+  Coffee(this.name, this.description, this.image, this.price,  this.ratings, {this.quantity = 1}); // Default quantity is 1
 
   // Getter for quantity
   int getQuantity() {

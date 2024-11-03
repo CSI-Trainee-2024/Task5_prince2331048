@@ -61,7 +61,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                             left: 0,
                             right: 0,
                             child: Container(
-                              padding: const EdgeInsets.all(30),
+                              padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
                                 borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(40),
@@ -91,12 +91,30 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                                       ),
                                       Text(
                                         widget.coffee.description,
-                                        style: const TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 15),
                                       ),
-                                      Text(
-                                        widget.coffee.description,
-                                        style: const TextStyle(fontSize: 20),
-                                      )
+                                      SizedBox(
+                                        height: SizeConfig.screenHeight * 0.01,
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.star,
+                                            color: Colors.orange,
+                                            size: 25,
+                                          ),
+                                          const SizedBox(width: 5),
+                                          Text(
+                                            widget.coffee.ratings,
+                                            style: const TextStyle(fontSize: 18),
+                                          ),
+                                          const SizedBox(width: 4),
+                                         Text(
+                                            '(8,590)',
+                                            style: const TextStyle(fontSize: 12),
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
                                   const SizedBox(
